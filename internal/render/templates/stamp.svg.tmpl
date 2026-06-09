@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" viewBox="0 0 160 160">
+  <circle cx="80" cy="80" r="72" fill="none" stroke="{{.Theme.BorderColor}}" stroke-width="3" stroke-dasharray="6,3"/>
+  <circle cx="80" cy="80" r="62" fill="none" stroke="{{.Theme.FgColor}}" stroke-width="1.5"/>
+  <g transform="translate(64,40)" color="{{.Theme.AccentColor}}"><svg width="32" height="32" viewBox="0 0 24 24">{{.Icon}}</svg></g>
+  <text x="80" y="90" fill="{{.Theme.FgColor}}" font-family="{{.Theme.FontFamily}}" font-size="{{.Theme.TitleSize}}" font-weight="bold" text-anchor="middle">{{.Name}}</text>
+  <text x="80" y="106" fill="{{.Theme.DimColor}}" font-family="{{.Theme.FontFamily}}" font-size="{{.Theme.SubSize}}" text-anchor="middle">{{.Subtitle}}</text>
+  <text x="80" y="126" fill="{{.Theme.AccentColor}}" font-family="{{.Theme.FontFamily}}" font-size="7" text-anchor="middle">{{.RarityLabel}}</text>
+</svg>

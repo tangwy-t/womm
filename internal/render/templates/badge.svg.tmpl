@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="{{.Width}}" height="30" viewBox="0 0 {{.Width}} 30">
+  <rect width="{{.Width}}" height="30" fill="{{.Theme.BgColor}}" rx="4"/>
+  <rect x="1" y="1" width="{{.RectWidth}}" height="28" fill="none" stroke="{{.Theme.BorderColor}}" stroke-width="1" rx="3" stroke-dasharray="4,2"/>
+  <g transform="translate(6,5)" color="{{.Theme.AccentColor}}"><svg width="20" height="20" viewBox="0 0 24 24">{{.Icon}}</svg></g>
+  <text x="30" y="13" fill="{{.Theme.FgColor}}" font-family="{{.Theme.FontFamily}}" font-size="{{.Theme.TitleSize}}" font-weight="bold" dominant-baseline="central">{{.Name}}</text>
+  <text x="30" y="25" fill="{{.Theme.DimColor}}" font-family="{{.Theme.FontFamily}}" font-size="{{.Theme.SubSize}}">{{.Subtitle}}</text>
+</svg>

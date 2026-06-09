@@ -1,0 +1,76 @@
+package render
+
+import (
+	"strings"
+	"testing"
+
+	"github.com/womm/womm/internal/badge"
+)
+
+func testBadge() *badge.Badge {
+	return &badge.Badge{
+		ID:       "test",
+		Name:     map[string]string{"zh": "测试徽章", "en": "Test Badge"},
+		Subtitle: map[string]string{"zh": "测试副标题", "en": "Subtitle"},
+		Icon:     "checkmark",
+		Type:     badge.Declarative,
+		Rarity:   badge.Common,
+	}
+}
+
+func TestRenderBadgeSVG(t *testing.T) {
+	r := NewRenderer()
+	svg, err := r.Render(testBadge(), "pixel", "badge", "zh")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !strings.Contains(svg, "<svg") {
+		t.Error("missing svg tag")
+	}
+	if !strings.Contains(svg, "测试徽章") {
+		t.Error("missing badge name")
+	}
+}
+
+func TestRenderEnglish(t *testing.T) {
+	r := NewRenderer()
+	svg, err := r.Render(testBadge(), "pixel", "badge", "en")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !strings.Contains(svg, "Test Badge") {
+		t.Error("missing English name")
+	}
+}
+
+func TestRenderAllThemes(t *testing.T) {
+	r := NewRenderer()
+	b := testBadge()
+	for _, theme := range []string{"pixel", "cyberpunk", "glitch", "clean"} {
+		t.Run(theme, func(t *testing.T) {
+			svg, err := r.Render(b, theme, "badge", "zh")
+			if err != nil {
+				t.Errorf("theme %s failed: %v", theme, err)
+			}
+			if !strings.Contains(svg, "<svg") {
+				t.Error("no svg output")
+			}
+		})
+	}
+}
+
+func TestRenderAllTemplates(t *testing.T) {
+	r := NewRenderer()
+	b := testBadge()
+	for _, tmpl := range []string{"badge", "wide", "terminal", "stamp"} {
+		t.Run(tmpl, func(t *testing.T) {
+			svg, err := r.Render(b, "pixel", tmpl, "zh")
+			if err != nil {
+				t.Errorf("template %s failed: %v", tmpl, err)
+			}
+			if !strings.Contains(svg, "<svg") {
+				t.Error("no svg output")
+			}
+		})
+	}
+}
