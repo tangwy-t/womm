@@ -36,6 +36,11 @@ func (s *Server) handleBadge(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	if b.Type == badge.Certified && user != "" && s.certEng == nil {
+		s.writeErrorSVG(w, "请先配置 GitHub Token")
+		return
+	}
+
 	if b.Type == badge.Certified && s.certEng != nil && user != "" {
 		result, err := s.certEng.TryCertify(r.Context(), user, badgeID)
 		if err != nil || !result.Passed {

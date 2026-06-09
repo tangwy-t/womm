@@ -78,3 +78,20 @@ func TestBadges_UserBadges(t *testing.T) {
 		t.Error("missing user badge")
 	}
 }
+
+func TestBadge_Certified_NoToken(t *testing.T) {
+	srv := setup()
+	req := httptest.NewRequest("GET", "/api/badge/midnight-coder?user=octocat", nil)
+	w := httptest.NewRecorder()
+	srv.router.ServeHTTP(w, req)
+	if w.Code != 200 {
+		t.Errorf("expected 200, got %d", w.Code)
+	}
+	body := w.Body.String()
+	if !strings.Contains(body, "svg") {
+		t.Error("expected SVG response")
+	}
+	if !strings.Contains(body, "github") && !strings.Contains(body, "Token") && !strings.Contains(body, "配置") {
+		t.Errorf("expected token-needed message, got: %s", body)
+	}
+}

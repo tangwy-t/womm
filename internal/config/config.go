@@ -46,7 +46,10 @@ func Load(path string) (*Config, error) {
 	}
 	data, err := os.ReadFile(path)
 	if err != nil {
-		return cfg, nil
+		if os.IsNotExist(err) {
+			return cfg, nil
+		}
+		return nil, err
 	}
 	if err := toml.Unmarshal(data, cfg); err != nil {
 		return nil, err

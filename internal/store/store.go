@@ -31,14 +31,14 @@ CREATE TABLE IF NOT EXISTS badge_state (
     badge_id    TEXT NOT NULL,
     unlocked    INTEGER NOT NULL DEFAULT 0,
     unlocked_at TEXT,
-    source      TEXT,
+    source      TEXT NOT NULL DEFAULT '',
     PRIMARY KEY (github_user, badge_id)
 );
 CREATE TABLE IF NOT EXISTS cert_cache (
     github_user TEXT NOT NULL,
     badge_id    TEXT NOT NULL,
     result      INTEGER NOT NULL,
-    raw_data    TEXT,
+    raw_data    TEXT NOT NULL DEFAULT '',
     expires_at  TEXT NOT NULL,
     PRIMARY KEY (github_user, badge_id)
 );`
