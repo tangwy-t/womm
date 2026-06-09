@@ -41,7 +41,7 @@ WOMM 填补了这个空白：徽章即服务，挂即用。
 
 ### 🔍 5 种布局模板
 
-- **`github`**（默认） — 垂直勋章风，仿 GitHub 官方成就，按稀有度着色（青铜/白银/黄金）
+- **`github`**（默认） — 垂直勋章风，仿 GitHub 官方成就，按稀有度着色（Common / Rare / Legendary）
 - `badge` — 横向紧凑
 - `wide` — 宽幅卡片
 - `terminal` — 终端输出模拟
@@ -104,7 +104,7 @@ womm github-token [TOKEN]            设置/查看 GitHub Personal Access Token
 | 参数 | 默认值 | 说明 |
 |------|--------|------|
 | `theme` | `pixel` | 视觉主题 |
-| `style` | `github` | 布局模板（`github` 勋章风为默认，另有 `badge`/`wide`/`terminal`/`stamp`） |
+| `style` | `github` | 布局模板（`github` 勋章风为默认，另有 `badge` / `wide` / `terminal` / `stamp`） |
 | `lang`  | `zh`    | 语言（`zh`/`en`） |
 | `user`  | —       | GitHub 用户名（认证式徽章必填） |
 
