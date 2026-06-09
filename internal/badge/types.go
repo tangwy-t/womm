@@ -10,9 +10,9 @@ const (
 type Rarity string
 
 const (
-	Common    Rarity = "common"
-	Rare      Rarity = "rare"
-	Legendary Rarity = "legendary"
+	Bronze Rarity = "bronze"
+	Silver Rarity = "silver"
+	Gold   Rarity = "gold"
 )
 
 type Badge struct {

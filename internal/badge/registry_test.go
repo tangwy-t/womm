@@ -13,8 +13,8 @@ func TestLookup(t *testing.T) {
 	if b.Type != Certified {
 		t.Errorf("expected Certified, got %v", b.Type)
 	}
-	if b.Rarity != Rare {
-		t.Errorf("expected Rare, got %v", b.Rarity)
+	if b.Rarity != Silver {
+		t.Errorf("expected Silver, got %v", b.Rarity)
 	}
 }
 

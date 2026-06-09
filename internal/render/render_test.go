@@ -1,6 +1,7 @@
 package render
 
 import (
+	"fmt"
 	"strings"
 	"testing"
 
@@ -14,7 +15,7 @@ func testBadge() *badge.Badge {
 		Subtitle: map[string]string{"zh": "测试副标题", "en": "Subtitle"},
 		Icon:     "checkmark",
 		Type:     badge.Declarative,
-		Rarity:   badge.Common,
+		Rarity:   badge.Bronze,
 	}
 }
 
@@ -77,7 +78,7 @@ func TestRenderAllTemplates(t *testing.T) {
 
 func TestRenderGithubTemplateAllTiers(t *testing.T) {
 	r := NewRenderer()
-	for _, rarity := range []badge.Rarity{badge.Common, badge.Rare, badge.Legendary} {
+	for _, rarity := range []badge.Rarity{badge.Bronze, badge.Silver, badge.Gold} {
 		t.Run(string(rarity), func(t *testing.T) {
 			b := &badge.Badge{
 				ID:       "test-" + string(rarity),
@@ -97,8 +98,30 @@ func TestRenderGithubTemplateAllTiers(t *testing.T) {
 			if !strings.Contains(svg, "radialGradient") {
 				t.Error("missing glow effect")
 			}
-			if !strings.Contains(svg, strings.ToUpper(string(rarity))) {
-				t.Errorf("missing rarity label %s", rarity)
+			if !strings.Contains(svg, fmt.Sprintf("bg-glow-test-%s", rarity)) {
+				t.Errorf("missing tier-specific gradient for %s", rarity)
+			}
+			// github template should be pure icon medallion - no text
+			if strings.Contains(svg, "<text") {
+				t.Errorf("github template should not contain text elements for %s tier", rarity)
+			}
+			// Should be 160x160 square
+			if !strings.Contains(svg, `width="160" height="160"`) {
+				t.Errorf("github template should be 160x160 square for %s tier", rarity)
+			}
+			// Should have metallic ring gradient
+			if !strings.Contains(svg, fmt.Sprintf("ring-test-%s", rarity)) {
+				t.Errorf("missing metallic ring gradient for %s tier", rarity)
+			}
+			// Gold tier should have specular highlight overlay
+			if rarity == badge.Gold {
+				if !strings.Contains(svg, "ellipse") {
+					t.Error("gold tier should have specular highlight overlay")
+				}
+			} else {
+				if strings.Contains(svg, "ellipse") {
+					t.Errorf("%s tier should not have specular highlight", rarity)
+				}
 			}
 		})
 	}

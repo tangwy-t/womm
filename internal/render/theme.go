@@ -43,19 +43,44 @@ func GetTheme(name string) Theme {
 }
 
 type TierConfig struct {
-	Accent string
-	Glow   string
+	Name      string
+	Accent    string
+	Glow      string
+	RingLight string
+	RingDark  string
+	Edge      string
 }
 
 var tiers = map[string]TierConfig{
-	"common":    {Accent: "#57606a", Glow: "#adbac7"},
-	"rare":      {Accent: "#54aeff", Glow: "#79c0ff"},
-	"legendary": {Accent: "#d4a72c", Glow: "#f0d070"},
+	"bronze": {
+		Name:      "bronze",
+		Accent:    "#cd7f32",
+		Glow:      "#e0a070",
+		RingLight: "#e8b888",
+		RingDark:  "#8b4513",
+		Edge:      "#3a2818",
+	},
+	"silver": {
+		Name:      "silver",
+		Accent:    "#c0c0c0",
+		Glow:      "#e0e0e0",
+		RingLight: "#e0e0e0",
+		RingDark:  "#808080",
+		Edge:      "#1a1a1a",
+	},
+	"gold": {
+		Name:      "gold",
+		Accent:    "#ffd700",
+		Glow:      "#ffed4e",
+		RingLight: "#ffed4e",
+		RingDark:  "#b8860b",
+		Edge:      "#3a3000",
+	},
 }
 
 func GetTier(rarity string) TierConfig {
 	if t, ok := tiers[rarity]; ok {
 		return t
 	}
-	return tiers["common"]
+	return tiers["bronze"]
 }
