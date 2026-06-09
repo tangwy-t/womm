@@ -1,0 +1,16 @@
+[server]
+port = 8080
+host = "0.0.0.0"
+
+[storage]
+path = "womm.db"
+
+[github]
+default_token = ""
+rate_limit_ttl = "1h"
+
+[cache]
+ttl = "1h"
+
+[themes]
+default = "pixel"
