@@ -62,7 +62,7 @@ func TestRenderAllThemes(t *testing.T) {
 func TestRenderAllTemplates(t *testing.T) {
 	r := NewRenderer()
 	b := testBadge()
-	for _, tmpl := range []string{"badge", "wide", "terminal", "stamp"} {
+	for _, tmpl := range []string{"badge", "wide", "terminal", "stamp", "github"} {
 		t.Run(tmpl, func(t *testing.T) {
 			svg, err := r.Render(b, "pixel", tmpl, "zh")
 			if err != nil {
@@ -70,6 +70,35 @@ func TestRenderAllTemplates(t *testing.T) {
 			}
 			if !strings.Contains(svg, "<svg") {
 				t.Error("no svg output")
+			}
+		})
+	}
+}
+
+func TestRenderGithubTemplateAllTiers(t *testing.T) {
+	r := NewRenderer()
+	for _, rarity := range []badge.Rarity{badge.Common, badge.Rare, badge.Legendary} {
+		t.Run(string(rarity), func(t *testing.T) {
+			b := &badge.Badge{
+				ID:       "test-" + string(rarity),
+				Name:     map[string]string{"zh": "测试", "en": "Test"},
+				Subtitle: map[string]string{"zh": "副标题", "en": "Subtitle"},
+				Icon:     "moon",
+				Type:     badge.Certified,
+				Rarity:   rarity,
+			}
+			svg, err := r.Render(b, "pixel", "github", "zh")
+			if err != nil {
+				t.Fatal(err)
+			}
+			if !strings.Contains(svg, "<svg") {
+				t.Error("missing svg")
+			}
+			if !strings.Contains(svg, "radialGradient") {
+				t.Error("missing glow effect")
+			}
+			if !strings.Contains(svg, strings.ToUpper(string(rarity))) {
+				t.Errorf("missing rarity label %s", rarity)
 			}
 		})
 	}

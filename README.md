@@ -39,9 +39,13 @@ WOMM 填补了这个空白：徽章即服务，挂即用。
 - **glitch** — RGB 错位 + 故障艺术
 - **clean** — 类 shields.io 简约风
 
-### 🔍 4 种布局模板
+### 🔍 5 种布局模板
 
-`badge` / `wide` / `terminal` / `stamp` —— 同一徽章，四种呈现。
+- **`github`**（默认） — 垂直勋章风，仿 GitHub 官方成就，按稀有度着色（青铜/白银/黄金）
+- `badge` — 横向紧凑
+- `wide` — 宽幅卡片
+- `terminal` — 终端输出模拟
+- `stamp` — 圆形印章
 
 ### ⚙️ 双模式交付
 
@@ -80,7 +84,7 @@ womm claim <badge-id> [--user=xxx]   声明获得一个"声明式"徽章
 womm status [--user=xxx]             查看自己已解锁的徽章
 womm generate <badge-id>             生成 SVG 静态文件
     --theme=pixel|cyberpunk|glitch|clean
-    --style=badge|wide|terminal|stamp
+    --style=github|badge|wide|terminal|stamp
     --lang=zh|en
     --output=path.svg
 womm certify <badge-id> --user=xxx   尝试通过 GitHub API 认证某徽章
@@ -100,7 +104,7 @@ womm github-token [TOKEN]            设置/查看 GitHub Personal Access Token
 | 参数 | 默认值 | 说明 |
 |------|--------|------|
 | `theme` | `pixel` | 视觉主题 |
-| `style` | `badge` | 布局模板 |
+| `style` | `github` | 布局模板（`github` 勋章风为默认，另有 `badge`/`wide`/`terminal`/`stamp`） |
 | `lang`  | `zh`    | 语言（`zh`/`en`） |
 | `user`  | —       | GitHub 用户名（认证式徽章必填） |
 

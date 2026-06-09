@@ -41,3 +41,21 @@ func GetTheme(name string) Theme {
 	}
 	return themes["pixel"]
 }
+
+type TierConfig struct {
+	Accent string
+	Glow   string
+}
+
+var tiers = map[string]TierConfig{
+	"common":    {Accent: "#57606a", Glow: "#adbac7"},
+	"rare":      {Accent: "#54aeff", Glow: "#79c0ff"},
+	"legendary": {Accent: "#d4a72c", Glow: "#f0d070"},
+}
+
+func GetTier(rarity string) TierConfig {
+	if t, ok := tiers[rarity]; ok {
+		return t
+	}
+	return tiers["common"]
+}

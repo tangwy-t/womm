@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="160" viewBox="0 0 200 160">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="{{.Theme.BgColor}}" stop-opacity="0.96"/>
+      <stop offset="100%" stop-color="{{.Theme.BgColor}}" stop-opacity="1"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="{{.Tier.Glow}}" stop-opacity="0.35"/>
+      <stop offset="60%" stop-color="{{.Tier.Glow}}" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="{{.Tier.Glow}}" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="200" height="160" fill="url(#bg)" rx="14"/>
+
+  <rect x="0.5" y="0.5" width="199" height="159" fill="none" stroke="{{.Tier.Accent}}" stroke-width="1" rx="13.5" opacity="0.5"/>
+
+  <circle cx="100" cy="58" r="50" fill="url(#glow)"/>
+
+  <circle cx="100" cy="58" r="40" fill="{{.Theme.BgColor}}" stroke="{{.Tier.Accent}}" stroke-width="1.5"/>
+
+  <g transform="translate(82,40)" color="{{.Tier.Accent}}">
+    <svg width="36" height="36" viewBox="0 0 24 24">
+      {{.Icon}}
+    </svg>
+  </g>
+
+  <rect x="68" y="108" width="64" height="14" rx="7" fill="{{.Tier.Accent}}" opacity="0.18"/>
+  <text x="100" y="118" fill="{{.Tier.Accent}}" font-family="{{.Theme.FontFamily}}" font-size="8" font-weight="bold" text-anchor="middle" letter-spacing="1.2">{{.RarityLabel}}</text>
+
+  <text x="100" y="138" fill="{{.Theme.FgColor}}" font-family="{{.Theme.FontFamily}}" font-size="10.5" font-weight="600" text-anchor="middle">{{.Name}}</text>
+
+  <text x="100" y="152" fill="{{.Theme.DimColor}}" font-family="{{.Theme.FontFamily}}" font-size="7.5" text-anchor="middle">{{.Subtitle}}</text>
+</svg>

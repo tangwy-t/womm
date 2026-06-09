@@ -126,7 +126,7 @@ var generateCmd = &cobra.Command{
 			output = args[0] + ".svg"
 		}
 		if style == "" {
-			style = "badge"
+			style = "github"
 		}
 		if lang == "" {
 			lang = "zh"
@@ -210,7 +210,7 @@ func init() {
 	generateCmd.Flags().String("theme", "", "visual theme (pixel/cyberpunk/glitch/clean)")
 	generateCmd.Flags().String("output", "", "output file path")
 	generateCmd.Flags().String("lang", "", "language (zh/en)")
-	generateCmd.Flags().String("style", "", "template style (badge/wide/terminal/stamp)")
+	generateCmd.Flags().String("style", "", "template style (github/badge/wide/terminal/stamp)")
 
 	rootCmd.AddCommand(serveCmd, listCmd, claimCmd, statusCmd, generateCmd, tokenCmd, certifyCmd)
 }

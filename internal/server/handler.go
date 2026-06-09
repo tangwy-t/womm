@@ -22,7 +22,7 @@ func (s *Server) handleBadge(w http.ResponseWriter, r *http.Request) {
 	}
 	style := r.URL.Query().Get("style")
 	if style == "" {
-		style = "badge"
+		style = "github"
 	}
 	lang := r.URL.Query().Get("lang")
 	if lang == "" {

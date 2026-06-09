@@ -22,6 +22,7 @@ type tmplData struct {
 	Width       int
 	RectWidth   int
 	Theme       Theme
+	Tier        TierConfig
 	Icon        template.HTML
 	Name        string
 	Subtitle    string
@@ -30,7 +31,7 @@ type tmplData struct {
 
 func NewRenderer() *Renderer {
 	r := &Renderer{templates: make(map[string]*template.Template)}
-	for _, name := range []string{"badge", "wide", "terminal", "stamp"} {
+	for _, name := range []string{"badge", "wide", "terminal", "stamp", "github"} {
 		data, err := templateFiles.ReadFile("templates/" + name + ".svg.tmpl")
 		if err != nil {
 			continue
@@ -61,6 +62,7 @@ func (r *Renderer) Render(b *badge.Badge, themeName, templateName, lang string) 
 		Width:       width,
 		RectWidth:   width - 2,
 		Theme:       theme,
+		Tier:        GetTier(string(b.Rarity)),
 		Icon:        template.HTML(GetIcon(b.Icon)),
 		Name:        name,
 		Subtitle:    subtitle,
