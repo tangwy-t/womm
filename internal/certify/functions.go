@@ -192,7 +192,7 @@ func certifyTrueDestroyer(ctx context.Context, gh GitHubClient, user string) (bo
 				if consecutive >= 3 {
 					return true, nil
 				}
-			} else {
+			} else if run.Conclusion == "success" {
 				consecutive = 0
 			}
 		}
@@ -226,7 +226,7 @@ func certifyCommitAnniversary(ctx context.Context, gh GitHubClient, user string)
 			earliest = c.Timestamp
 		}
 	}
-	return time.Since(earliest).Hours()/(365.25*24) >= 5, nil
+	return earliest.Before(time.Now().AddDate(-5, 0, 0)), nil
 }
 
 func certifyFullstackVictim(ctx context.Context, gh GitHubClient, user string) (bool, error) {
