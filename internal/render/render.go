@@ -27,7 +27,6 @@ type tmplData struct {
 	Name        string
 	Subtitle    string
 	RarityLabel string
-	Badge       *badge.Badge
 }
 
 func NewRenderer() *Renderer {
@@ -68,7 +67,6 @@ func (r *Renderer) Render(b *badge.Badge, themeName, templateName, lang string) 
 		Name:        name,
 		Subtitle:    subtitle,
 		RarityLabel: strings.ToUpper(string(b.Rarity)),
-		Badge:       b,
 	}
 	var buf bytes.Buffer
 	if err := tmpl.Execute(&buf, data); err != nil {
