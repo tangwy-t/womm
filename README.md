@@ -3,21 +3,9 @@
 [![Go Report Card](https://img.shields.io/badge/go-1.22+-00ADD8?style=flat&logo=go)](https://go.dev/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-> **官方成就太无聊？WOMM 让每个开发者都能给自己的 README 挂上黑色幽默徽章。**
-
-WOMM 是一个自托管的 GitHub 成就徽章生成服务。它提供 **25 枚源自社区文化的讽刺徽章**、**4 套高度风格化的视觉主题**，以及**通过真实 GitHub API 进行的社会实验式认证**——把 [rejected-github-profile-achievements](https://github.com/nickvdyck/rejected-github-profile-achievements) 的创意变成了一个真正可用的活服务。
+WOMM 是一个自托管的 badge 生成服务，提供 **25 枚黑色幽默成就徽章**、**4 套视觉主题**，以及**通过 GitHub API 自动认证**的能力。
 
 ![示例徽章](./docs/examples.svg)
-
----
-
-## 为什么需要 WOMM？
-
-- 🎭 **官方成就太"正经"** —— 研究表明 GitHub 官方成就与开发者真实技能相关性很差
-- 🧑‍💻 **表达欲被压抑** —— 开发者想在 README 里展示更"人味儿"的个性
-- 🔥 **静态创意无法落地** —— rejected-achievements 项目只有图片，没有真正可嵌入 README 的徽章
-
-WOMM 填补了这个空白：徽章即服务，挂即用。
 
 ---
 
@@ -37,7 +25,7 @@ WOMM 填补了这个空白：徽章即服务，挂即用。
 - **pixel**（默认） — CRT 绿色荧光终端，开发者共鸣感拉满
 - **cyberpunk** — 霓虹粉蓝渐变 + 扫描线
 - **glitch** — RGB 错位 + 故障艺术
-- **clean** — 类 shields.io 简约风
+- **clean** — 简约风
 
 ### 🔍 5 种布局模板
 
@@ -165,7 +153,7 @@ default = "pixel"
 | 真·破坏王 | 连续 3 次 CI 失败 |
 | 幽灵提交者 | 连续消失 30 天后回归 |
 | 百 Issue 之主 | 100+ open issues |
-| ... | 详见 [设计文档](./docs/superpowers/specs/2026-06-09-womm-badge-service-design.md) |
+| ... | 详见徽章 ID 列表 |
 
 认证结果缓存 1 小时（可配置）。
 
@@ -255,14 +243,6 @@ go build -o womm .
 - [ ] 徽章收藏 / 分享
 - [ ] 更多视觉主题（retro-arcade、watercolor）
 - [ ] Web UI：交互式徽章墙
-
----
-
-## 灵感来源
-
-- [rejected-github-profile-achievements](https://github.com/nickvdyck/rejected-github-profile-achievements)
-- [shields.io](https://shields.io/)
-- GitHub 官方成就系统的社区讨论
 
 ---
 
